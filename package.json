@@ -11,6 +11,12 @@
         "resources": {
             "media": [
                 {
+                    "file": "images/lucid-dreams.png",
+                    "name": "LUCID_DREAM",
+                    "targetPlatforms": null,
+                    "type": "png"
+                },
+                {
                     "file": "fonts/Oswaldesque Light",
                     "name": "OSWALDESQUE_70",
                     "targetPlatforms": null,

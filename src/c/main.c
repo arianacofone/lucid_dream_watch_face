@@ -11,6 +11,10 @@ static TextLayer *s_time_layer;
 // Declares globall that I'll be using a custom font
 static GFont s_time_font;
 
+// Declares the 
+static GBitmap *s_bitmap;
+static BitmapLayer *s_bitmap_layer;
+
 // Function that updates the time logic from tick_handler and main_window_load
 static void update_time() {
   // Pull in a tm structure to the info
@@ -52,8 +56,15 @@ static void main_window_load(Window *window) {
   text_layer_set_font(s_time_layer, s_time_font);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   
+  s_bitmap = gbitmap_create_with_resource(RESOURCE_ID_LUCID_DREAM);
+  s_bitmap_layer = bitmap_layer_create(GRect(0, 0, 178,178));
+  bitmap_layer_set_compositing_mode(s_bitmap_layer, GCompOpSet);
+  bitmap_layer_set_bitmap(s_bitmap_layer, s_bitmap);
+  
   // Add the text layer as a child to the window layer
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
+  
+  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bitmap_layer));
 }
 
 static void main_window_unload(Window *window) {
@@ -87,6 +98,9 @@ static void init() {
 static void deinit() {
   // Destroy Window
   window_destroy(s_main_window);
+  
+  gbitmap_destroy(s_bitmap);
+  bitmap_layer_destroy(s_bitmap_layer);
   
 }
 
