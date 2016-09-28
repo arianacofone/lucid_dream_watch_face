@@ -50,7 +50,7 @@ static void main_window_load(Window *window) {
   
   // Takes the text layer and layers over design options to make it look like a watch
   text_layer_set_background_color(s_time_layer, GColorClear);
-  text_layer_set_text_color(s_time_layer, GColorBlack);
+  text_layer_set_text_color(s_time_layer, GColorWhite);
   // Text_layer_set_text(s_time_layer, "00:00");
   // Applies the s_time_font declared above to the app
   text_layer_set_font(s_time_layer, s_time_font);
