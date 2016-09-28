@@ -8,10 +8,10 @@ static Window *s_main_window;
 // Creates TextLayer static variable that can be used in the future
 static TextLayer *s_time_layer;
 
-// Declares globall that I'll be using a custom font
+// Declares globally that I'll be using a custom font
 static GFont s_time_font;
 
-// Declares the 
+// Declares the pointer for the stored image
 static GBitmap *s_bitmap;
 static BitmapLayer *s_bitmap_layer;
 
@@ -51,22 +51,22 @@ static void main_window_load(Window *window) {
   // Takes the text layer and layers over design options to make it look like a watch
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorBlack);
-//   text_layer_set_text(s_time_layer, "00:00");
-// Applies the s_time_font declared above to the app
+  // Text_layer_set_text(s_time_layer, "00:00");
+  // Applies the s_time_font declared above to the app
   text_layer_set_font(s_time_layer, s_time_font);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   
+  //Image layer details including png name, size, and how it's layered
   s_bitmap = gbitmap_create_with_resource(RESOURCE_ID_LUCID_DREAM);
   s_bitmap_layer = bitmap_layer_create(GRect(0, 0, 178,178));
   bitmap_layer_set_compositing_mode(s_bitmap_layer, GCompOpSet);
   bitmap_layer_set_bitmap(s_bitmap_layer, s_bitmap);
   
+  // Add the image layer as a child to the window layer
   layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bitmap_layer));
   
   // Add the text layer as a child to the window layer
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
-  
-  
 }
 
 static void main_window_unload(Window *window) {
@@ -94,16 +94,15 @@ static void init() {
   
   // Registers with the Tick Timer Service tying to function above
   tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
-
 }
 
 static void deinit() {
   // Destroy Window
   window_destroy(s_main_window);
   
+  // Destroy the image map and image layer on exit
   gbitmap_destroy(s_bitmap);
   bitmap_layer_destroy(s_bitmap_layer);
-  
 }
 
 // main function calls init and deinit 
