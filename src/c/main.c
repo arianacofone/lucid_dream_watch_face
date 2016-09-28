@@ -1,4 +1,4 @@
-// directive to use Pebble SDK
+// Directive to use Pebble SDK
 #include <pebble.h>
 
 // Creates Window variable to we can access it at any time
@@ -7,6 +7,25 @@ static Window *s_main_window;
 
 // Creates TextLayer static variable that can be used in the future
 static TextLayer *s_time_layer;
+
+// Function that updates the time logic from tick_handler and main_window_load
+static void update_time() {
+  // Pull in a tm structure to the info
+  time_t temp = time(NULL);
+  struct tm *tick_time = localtime(&temp);
+  
+  // Write the current hours and minutes into a buffer
+  static char s_buffer[8];
+  strftime(s_buffer, sizeof(s_buffer), clock_is_24h_style() ?
+                                          "%H:%M" : "%I:%M", tick_time);
+  //Displays the time on the text layer
+  text_layer_set_text(s_time_layer, s_buffer);
+}
+
+// Function that calls the TickTimer Service whenever the time changes
+static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+  update_time();
+}
 
 // Two functions below create an additional layer of abstraction to manage
 // the window sub-elements
@@ -22,7 +41,7 @@ static void main_window_load(Window *window) {
   // Takes the text layer and layers over design options to make it look like a watch
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorBlack);
-  text_layer_set_text(s_time_layer, "00:00");
+//   text_layer_set_text(s_time_layer, "00:00");
   text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   
@@ -47,8 +66,16 @@ static void init() {
     .unload = main_window_unload,
   });
   
-  // Show the Windo on the watch, with animated=true
+   // Registers with the Tick Timer Service tying to function above
+  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
+  
+  
+  // Show the Window on the watch, with animated=true
   window_stack_push(s_main_window, true);
+  
+  // Calls the function to call the current time
+  update_time();
+
 }
 
 static void deinit() {

@@ -1,10 +1,10 @@
 {
-    "author": "ariana.dziedzic@gmail.com",
+    "author": "ariana dziedzic",
     "dependencies": {},
     "keywords": [],
-    "name": "lucid_dream",
+    "name": "lucid-dreaming",
     "pebble": {
-        "displayName": "lucid_dream",
+        "displayName": "Lucid Dreaming",
         "enableMultiJS": true,
         "messageKeys": [],
         "projectType": "native",
