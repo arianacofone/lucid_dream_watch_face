@@ -46,7 +46,7 @@ static void main_window_load(Window *window) {
     GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 70));
   
   //Creates the custom GFont
-  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OSWALDESQUE_70));
+  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_LARABIE_50));
   
   // Takes the text layer and layers over design options to make it look like a watch
   text_layer_set_background_color(s_time_layer, GColorClear);

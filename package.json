@@ -11,6 +11,18 @@
         "resources": {
             "media": [
                 {
+                    "file": "fonts/larabiefont free.ttf",
+                    "name": "LARABIE_50",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
+                    "file": "fonts/Mechanization.ttf",
+                    "name": "MECHANIZATION_40",
+                    "targetPlatforms": null,
+                    "type": "font"
+                },
+                {
                     "file": "images/lucid-dreams.png",
                     "name": "LUCID_DREAM",
                     "targetPlatforms": null,
