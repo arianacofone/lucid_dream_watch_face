@@ -8,6 +8,9 @@ static Window *s_main_window;
 // Creates TextLayer static variable that can be used in the future
 static TextLayer *s_time_layer;
 
+// Declares globall that I'll be using a custom font
+static GFont s_time_font;
+
 // Function that updates the time logic from tick_handler and main_window_load
 static void update_time() {
   // Pull in a tm structure to the info
@@ -36,13 +39,17 @@ static void main_window_load(Window *window) {
   
   // Creates a textlayer with width and height for square and round pebble
   s_time_layer = text_layer_create(
-    GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 50));
+    GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 70));
+  
+  //Creates the custom GFont
+  s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_OSWALDESQUE_70));
   
   // Takes the text layer and layers over design options to make it look like a watch
   text_layer_set_background_color(s_time_layer, GColorClear);
   text_layer_set_text_color(s_time_layer, GColorBlack);
 //   text_layer_set_text(s_time_layer, "00:00");
-  text_layer_set_font(s_time_layer, fonts_get_system_font(FONT_KEY_BITHAM_42_BOLD));
+// Applies the s_time_font declared above to the app
+  text_layer_set_font(s_time_layer, s_time_font);
   text_layer_set_text_alignment(s_time_layer, GTextAlignmentCenter);
   
   // Add the text layer as a child to the window layer
