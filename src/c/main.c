@@ -61,10 +61,12 @@ static void main_window_load(Window *window) {
   bitmap_layer_set_compositing_mode(s_bitmap_layer, GCompOpSet);
   bitmap_layer_set_bitmap(s_bitmap_layer, s_bitmap);
   
+  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bitmap_layer));
+  
   // Add the text layer as a child to the window layer
   layer_add_child(window_layer, text_layer_get_layer(s_time_layer));
   
-  layer_add_child(window_get_root_layer(window), bitmap_layer_get_layer(s_bitmap_layer));
+  
 }
 
 static void main_window_unload(Window *window) {
