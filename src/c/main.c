@@ -65,16 +65,15 @@ static void init() {
     .load = main_window_load,
     .unload = main_window_unload,
   });
-  
-   // Registers with the Tick Timer Service tying to function above
-  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
-  
-  
+    
   // Show the Window on the watch, with animated=true
   window_stack_push(s_main_window, true);
   
   // Calls the function to call the current time
   update_time();
+  
+  // Registers with the Tick Timer Service tying to function above
+  tick_timer_service_subscribe(MINUTE_UNIT, tick_handler);
 
 }
 
