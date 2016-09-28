@@ -43,7 +43,7 @@ static void main_window_load(Window *window) {
   
   // Creates a textlayer with width and height for square and round pebble
   s_time_layer = text_layer_create(
-    GRect(0, PBL_IF_ROUND_ELSE(58, 52), bounds.size.w, 70));
+    GRect(0, -15, bounds.size.w, 50));
   
   //Creates the custom GFont
   s_time_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_LARABIE_50));
