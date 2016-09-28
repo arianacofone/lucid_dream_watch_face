@@ -1,0 +1,26 @@
+{
+    "author": "ariana.dziedzic@gmail.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "lucid_dream",
+    "pebble": {
+        "displayName": "lucid_dream",
+        "enableMultiJS": true,
+        "messageKeys": [],
+        "projectType": "native",
+        "resources": {
+            "media": []
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk"
+        ],
+        "uuid": "7f5d2b13-e713-4e97-afe5-abe47140fcb8",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.0.0"
+}
