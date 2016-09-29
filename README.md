@@ -17,4 +17,4 @@ Interested in creating your own Pebble watchface or even app? Start <a href="htt
 Ariana Dziedzic
 
 ## Acknowledgments
-Cheers to Pebble for being such a 
+Cheers to Pebble for being such a developer friendly company!
